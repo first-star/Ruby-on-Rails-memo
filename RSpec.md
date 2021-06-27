@@ -467,9 +467,10 @@ end
 
 <br>
 
-これまで書いたテストコードでは、user = User.new(nickname: '', email: 'test@example', password: '000000', password_confirmation: '000000')のようにユーザーを生成する記述を都度記述していました。これらの同じような記述はまとめてしまった方が効率的。
+これまで書いたテストコードでは、user = User.new(nickname: '', email: 'test@example', password: '000000', password_confirmation: '000000')のようにユーザーを生成するような記述はまとめてしまった方が効率的。  
 
-その時に使用するものが、FactoryBotです。
+その時に使用するものが、FactoryBot。  
+
 
 ## FactoryBot
 インスタンスをまとめることができるGem。他のファイルであらかじめ各クラスのインスタンスに定める値を設定しておき、各テストコードで使用。
