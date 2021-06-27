@@ -463,6 +463,30 @@ end
 % bundle exec rspec spec/models/user_spec.rb 
 ```
 
+<br>
+
+<br>
+
+これまで書いたテストコードでは、user = User.new(nickname: '', email: 'test@example', password: '000000', password_confirmation: '000000')のようにユーザーを生成する記述を都度記述していました。これらの同じような記述はまとめてしまった方が効率的。
+
+その時に使用するものが、FactoryBotです。
+
+## FactoryBot
+インスタンスをまとめることができるGem。他のファイルであらかじめ各クラスのインスタンスに定める値を設定しておき、各テストコードで使用。
+<br>
+
+**Gemfile**
+```ruby
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 4.0.0'
+  gem 'factory_bot_rails'
+end
+```
+
+<br>
+
 
 
 
