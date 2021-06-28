@@ -514,6 +514,48 @@ end
 ```
 <br>
 
+インスタンスを生成するために、FactoryBot.build(:user)という記述をテストコードの中に記述  
+
+<br>
+
+**build**  
+newメソッドと同様の意味  
+<br>
+
+**【例】**
+```ruby
+# FactoryBotを利用しない場合
+user = User.new(nickname: 'test', email: 'test@example', password: '000000', password_confirmation: '00000000')
+# FactoryBotを利用する場合
+user = FactoryBot.build(:user)
+```
+<br>
+
+## テストコードの記述を編集
+**spec/models/user_spec.rb**
+```ruby
+require 'rails_helper'
+RSpec.describe User, type: :model do
+  describe 'ユーザー新規登録' do
+    it 'nicknameが空では登録できない' do
+      user = FactoryBot.build(:user)  # Userのインスタンス生成
+      user.nickname = ''  # nicknameの値を空にする
+      user.valid?
+      expect(user.errors.full_messages).to include "Nickname can't be blank"
+    end
+    it 'emailが空では登録できない' do
+      user = FactoryBot.build(:user)  # Userのインスタンス生成
+      user.email = ''  # emailの値を空にする
+      user.valid?
+      expect(user.errors.full_messages).to include "Email can't be blank"
+    end
+  end
+end
+```
+
+<br>
+
+
 
 
 
