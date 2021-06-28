@@ -488,6 +488,31 @@ end
 
 <br>
 
+**ターミナル**
+```
+% bundle install
+```
+<br>
+
+## インスタンスの生成を切り出すファイルを作成
+FactoryBotの記述を格納するディレクトリfactoriesと、Userモデルに対するFactoryBotのファイルusers.rbを、以下のように手動で作成  
+
+<br>
+
+## FactoryBotを使用してインスタンス生成を共通化
+
+**spec/factories/users.rb**
+```ruby
+FactoryBot.define do
+  factory :user do
+    nickname              {'test'}
+    email                 {'test@example'}
+    password              {'000000'}
+    password_confirmation {password}
+  end
+end
+```
+<br>
 
 
 
