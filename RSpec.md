@@ -556,6 +556,69 @@ end
 <br>
 
 
+**テストコードを実行**  
+
+**ターミナル**
+```
+% bundle exec rspec spec/models/user_spec.rb 
+```
+
+<br>
+
+### 共通した記述を切り出す  
+<br>
+
+**before**  
+それぞれのテストコードを実行する前に、セットアップを行う  
+**【例】**  
+```ruby
+require 'rails_helper'
+RSpec.describe User, type: :model do
+  before do
+    # 何かしらの処理
+  end
+
+  describe 'X' do
+    it 'Y' do
+      # before内の処理が完了してから実行される
+    end
+    it 'Z' do
+      # before内の処理が完了してから実行される
+    end
+  end
+end
+```
+<br>
+
+**テストコードの記述を編集**  
+**spec/models/user_spec.rb**
+```ruby
+require 'rails_helper'
+RSpec.describe User, type: :model do
+  before do
+    @user = FactoryBot.build(:user)
+  end
+
+  describe 'ユーザー新規登録' do
+    it 'nicknameが空では登録できない' do
+      @user.nickname = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Nickname can't be blank"
+    end
+    it 'emailが空では登録できない' do
+      @user.email = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Email can't be blank"
+    end
+  end
+end
+```
+<br>
+
+**ターミナル**
+```
+% bundle exec rspec spec/models/user_spec.rb 
+```
 
 
 
