@@ -619,6 +619,19 @@ end
 ```
 % bundle exec rspec spec/models/user_spec.rb 
 ```
+<br>
+
+
+FactoryBotで設定した値は、'test@example'など固有のもの。  
+しかし、これから複数のテストを行う際に、「すでにemailの重複したインスタンスが存在する」といったような意図しない形で弾かれてしまうことがある。  
+
+beforeでインスタンスを生成する都度、値をランダムで生成する際に役立つものがFaker。  
+
+<br>
+
+
+
+
 
 
 
